@@ -1,0 +1,85 @@
+<main>
+  <section class="section section-shaped section-lg">
+    <div class="shape shape-style-1 bg-gradient-default">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="container pt-lg-md">
+      <div class="row justify-content-center">
+        <div class="col-lg-5">
+          <div class="card bg-secondary shadow border-0">
+            
+            <div class="card-body px-lg-5 py-lg-5">
+              <div class="text-center text-muted mb-4">
+                <small>New Product</small>
+              </div>
+              
+
+              <form role="form" (ngSubmit) = "f.form.valid && onClickSubmit(f.value);" #f="ngForm"  novalidate>
+                 <div class="form-group" [ngClass]="{'focused':focus1===true}">
+                  <div class="input-group input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-circle-08"></i></span>
+                    </div>
+                     <input type="text" maxlength="50" placeholder="Product Name" name="productName" class="form-control" [(ngModel)]="model.productName" #productName="ngModel" [ngClass]="{ 'is-invalid': f.submitted && productName.invalid }" required>
+                       <div *ngIf="f.submitted && productName.invalid" class="invalid-feedback">
+                        <div *ngIf="productName.errors.required">Product Name is required</div>
+                    </div>
+
+                  </div>
+                </div>
+               
+                  <div class="form-group" [ngClass]="{'focused':focus===true}">
+                  <div class="input-group input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-mobile-button"></i></span>
+                    </div>
+                    <input type="text" maxlength="13" (keypress)="numberOnly($event)" placeholder="Product ID" name="productID" class="form-control" [(ngModel)]="model.productID" #productID="ngModel" [ngClass]="{ 'is-invalid': f.submitted && productID.invalid }" required>
+                    <div *ngIf="f.submitted && productID.invalid" class="invalid-feedback">
+                     <div *ngIf="productID.errors.required">Product ID is required</div>
+                 </div>                    
+                  </div>
+                </div>
+                  <div class="form-group" [ngClass]="{'focused':focus===true}">
+                  <div class="input-group input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-money-coins"></i></span>
+                    </div>
+                    <input class="form-control" maxlength="30" placeholder="Product Manger" name="productManger" ngModel type="text" (focus)="focus=true" (blur)="focus=false">
+                  </div>
+                </div>
+                  <div class="form-group" [ngClass]="{'focused':focus===true}">
+                  <div class="input-group input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                    </div>
+                    <input type="date" maxlength="10" placeholder="Sales Start Date" name="saleDate" class="form-control" [(ngModel)]="model.saleDate" #saleDate="ngModel" [ngClass]="{ 'is-invalid': f.submitted && saleDate.invalid }" required>
+                    <div *ngIf="f.submitted && saleDate.invalid" class="invalid-feedback">
+                     <div *ngIf="saleDate.errors.required">Date is required</div>
+                 </div>                   </div>
+                </div>
+                
+                <div class="text-center">
+                  <button type="button"  class="btn btn-primary mt-4" (click) = "f.reset()">Clear</button>
+
+                  <button type="submit" class="btn btn-primary mt-4"  >Submit</button>
+                </div>
+               
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<p-dialog header="Information" [(visible)]="display">
+  Successfully submited!!!
+</p-dialog>
